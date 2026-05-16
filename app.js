@@ -64,7 +64,7 @@ function openProductModal(id) {
   const modal = qs('#productModal');
   modal.innerHTML = `
     <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" data-close-modal>×</button>
+      <button class="modal-close" type="button" onclick="closeModals(event)" data-close-modal>×</button>
       <div class="modal-label">${product.label}</div>
       <h2>${product.name}</h2>
       <p>${product.intro}</p>
@@ -85,7 +85,7 @@ function openTrainingModal(id) {
   const modal = qs('#trainingModal');
   modal.innerHTML = `
     <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" data-close-modal>×</button>
+      <button class="modal-close" type="button" onclick="closeModals(event)" data-close-modal>×</button>
       <div class="modal-label">${module.label}</div>
       <h2>${module.title}</h2>
       <p>${module.intro}</p>
@@ -96,7 +96,12 @@ function openTrainingModal(id) {
   modal.setAttribute('aria-hidden', 'false');
 }
 
-function closeModals() {
+function closeModals(event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   qsa('.modal').forEach(modal => {
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
@@ -114,13 +119,17 @@ function initEvents() {
     const trainingCard = event.target.closest('[data-training-id]');
     if (trainingCard) openTrainingModal(trainingCard.dataset.trainingId);
 
-    if (event.target.matches('.modal, [data-close-modal]')) closeModals();
+    if (event.target.classList && event.target.classList.contains('modal')) {
+      closeModals();
+    }
   });
 
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') closeModals();
   });
 }
+
+window.closeModals = closeModals;
 
 renderProducts();
 renderTraining();
@@ -357,3 +366,11 @@ if (document.readyState === 'loading') {
     initGlobalSearch();
   }
 })();
+
+window.addEventListener('click', (event) => {
+  document.querySelectorAll('.modal').forEach(modal => {
+    if (event.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+});
