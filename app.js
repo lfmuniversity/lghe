@@ -125,3 +125,104 @@ function initEvents() {
 renderProducts();
 renderTraining();
 initEvents();
+
+
+// Global search: filters products, training modules, sales cards and FAQ cards.
+function normalizeSearchText(text) {
+  return (text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+function setActiveTabById(tabId) {
+  const panels = Array.from(document.querySelectorAll('.tab-panel'));
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+
+  panels.forEach(panel => panel.classList.toggle('active', panel.id === tabId));
+
+  const activeIndex = panels.findIndex(panel => panel.id === tabId);
+  tabs.forEach((tab, index) => tab.classList.toggle('active', index === activeIndex));
+}
+
+function clearSearchFilters() {
+  document.querySelectorAll('.search-hidden').forEach(el => el.classList.remove('search-hidden'));
+  document.querySelectorAll('.family-hidden').forEach(el => el.classList.remove('family-hidden'));
+  const empty = document.getElementById('searchEmptyState');
+  if (empty) empty.classList.remove('active');
+}
+
+function applyGlobalSearch(query) {
+  const normalizedQuery = normalizeSearchText(query);
+  const empty = document.getElementById('searchEmptyState');
+
+  if (!normalizedQuery) {
+    clearSearchFilters();
+    return;
+  }
+
+  const searchableSelectors = [
+    '.product-card',
+    '.training-card',
+    '.sales-card',
+    '.faq-card',
+    '.quick-card'
+  ];
+
+  let totalMatches = 0;
+
+  searchableSelectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach(card => {
+      const text = normalizeSearchText(card.innerText);
+      const isMatch = text.includes(normalizedQuery);
+      card.classList.toggle('search-hidden', !isMatch);
+      if (isMatch) totalMatches += 1;
+    });
+  });
+
+  document.querySelectorAll('.product-family').forEach(family => {
+    const hasVisibleCards = family.querySelectorAll('.product-card:not(.search-hidden)').length > 0;
+    const familyText = normalizeSearchText(family.querySelector('.family-head')?.innerText || '');
+    const familyMatches = familyText.includes(normalizedQuery);
+
+    if (familyMatches) {
+      family.classList.remove('family-hidden');
+      family.querySelectorAll('.product-card').forEach(card => card.classList.remove('search-hidden'));
+      totalMatches += 1;
+    } else {
+      family.classList.toggle('family-hidden', !hasVisibleCards);
+    }
+  });
+
+  if (empty) empty.classList.toggle('active', totalMatches === 0);
+
+  // Send user automatically to the most useful tab while searching
+  const productMatches = document.querySelectorAll('#prodotti .product-card:not(.search-hidden)').length;
+  const trainingMatches = document.querySelectorAll('#training .training-card:not(.search-hidden)').length;
+  const salesMatches = document.querySelectorAll('#vendita .sales-card:not(.search-hidden)').length;
+  const faqMatches = document.querySelectorAll('#faq .faq-card:not(.search-hidden)').length;
+
+  if (productMatches > 0) setActiveTabById('prodotti');
+  else if (trainingMatches > 0) setActiveTabById('training');
+  else if (salesMatches > 0) setActiveTabById('vendita');
+  else if (faqMatches > 0) setActiveTabById('faq');
+}
+
+function initGlobalSearch() {
+  const input = document.getElementById('globalSearch');
+  if (!input) return;
+
+  input.addEventListener('input', event => {
+    applyGlobalSearch(event.target.value);
+  });
+
+  input.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      input.value = '';
+      clearSearchFilters();
+      input.blur();
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initGlobalSearch);
