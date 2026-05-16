@@ -19,10 +19,10 @@
       </div>
 
       <div class="search">
-        <input id="globalSearch" id="searchInput" type="text" placeholder="Cerca prodotti, training, FAQ..." />
+        <input id="globalSearch" type="search" placeholder="Cerca prodotti, training, feature..." autocomplete="off" />
       </div>
 
-      <img src="assets/lfm-logo.webp" class="logo lfm-logo" alt="LFM" />
+      <img src="assets/lfm-logo.png" class="logo lfm-logo" alt="LFM" />
     </div>
   </header>
 
@@ -37,7 +37,7 @@
   </nav>
 
   <main>
-    <div id="searchEmptyState" class="search-empty-state">Nessun risultato trovato. Prova con OLED, gaming, Dolby, AI, QNED o Mini RGB.</div>
+    <div id="searchEmptyState" class="search-empty-state" hidden>Nessun risultato trovato. Prova con OLED, gaming, Dolby, AI, QNED o Mini RGB.</div>
     <section class="tab-panel active" id="home">
       <div class="hero">
         <div class="hero-content">
@@ -111,19 +111,18 @@
       </div>
     </section>
 
-    <section class="tab-panel" id="faq">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">FAQ & <span>Supporto</span></h2>
-          <p class="section-subtitle">Risposte rapide per promoter, trainer e field force.</p>
-        </div>
-      </div>
-      <div class="faq-grid">
-        <div class="faq-card"><h3>Che differenza c’è tra QNED e Mini RGB?</h3><p>Mini RGB evolve il MiniLED con una retroilluminazione RGB e maggiore fedeltà cromatica.</p></div>
-        <div class="faq-card"><h3>Quando puntare su OLED?</h3><p>Quando il cliente cerca nero perfetto, massimo contrasto, cinema e gaming premium.</p></div>
-        <div class="faq-card"><h3>A cosa serve AI Hub?</h3><p>A personalizzare esperienza, ricerca, suggerimenti e interazione tramite comandi vocali.</p></div>
-      </div>
-    </section>
+    
+<section class="tab-panel" id="faq">
+  <div class="section-head">
+    <div>
+      <h2 class="section-title">FAQ & <span>Supporto</span></h2>
+      <p class="section-subtitle">Risposte rapide per promoter e trainer LG Home Entertainment.</p>
+    </div>
+  </div>
+
+  <div class="faq-grid" id="faqContainer"></div>
+</section>
+
   </main>
 
   <div class="modal" id="productModal" aria-hidden="true"></div>

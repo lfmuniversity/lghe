@@ -172,7 +172,9 @@ main { max-width: 1800px; margin: 0 auto; padding: 4rem 3rem; }
 }
 
 
-/* Global search */
+
+
+/* Global search v2 */
 .search {
   flex: 1;
   max-width: 620px;
@@ -188,6 +190,7 @@ main { max-width: 1800px; margin: 0 auto; padding: 4rem 3rem; }
   color: rgba(255,255,255,.5);
   font-weight: 800;
   pointer-events: none;
+  z-index: 2;
 }
 
 .search input {
@@ -205,7 +208,6 @@ main { max-width: 1800px; margin: 0 auto; padding: 4rem 3rem; }
 }
 
 .search-empty-state {
-  display: none;
   margin-bottom: 1.5rem;
   padding: 1rem 1.2rem;
   border-radius: 18px;
@@ -214,8 +216,8 @@ main { max-width: 1800px; margin: 0 auto; padding: 4rem 3rem; }
   color: rgba(255,255,255,.72);
 }
 
-.search-empty-state.active {
-  display: block;
+.search-empty-state[hidden] {
+  display: none !important;
 }
 
 .search-hidden {
@@ -224,4 +226,62 @@ main { max-width: 1800px; margin: 0 auto; padding: 4rem 3rem; }
 
 .family-hidden {
   display: none !important;
+}
+
+
+/* FAQ SYSTEM CLEAN */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.faq-card {
+  border-radius: 24px;
+  padding: 1.4rem;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  transition: .25s ease;
+}
+
+.faq-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(234,0,93,.4);
+}
+
+.faq-category {
+  display: inline-flex;
+  padding: .45rem .7rem;
+  border-radius: 999px;
+  background: rgba(234,0,93,.12);
+  color: #ff8cb9;
+  margin-bottom: 1rem;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.faq-card h3 {
+  margin: 0 0 .8rem;
+  font-size: 1.05rem;
+}
+
+.faq-card p {
+  color: rgba(255,255,255,.72);
+  line-height: 1.6;
+}
+
+
+/* LFM logo clean header override */
+.lfm-logo {
+  height: 54px;
+  width: auto;
+  max-width: 160px;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  object-fit: contain;
+  display: block;
 }
