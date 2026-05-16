@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LG Home Entertainment - Portale Formazione</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="header-wrap">
+      <div class="brand-cluster">
+        <img src="assets/lg-logo.png" class="logo lg-logo" alt="LG" />
+        <div class="brand-copy">
+          <div class="eyebrow">LFM University</div>
+          <h1>LG Home Entertainment</h1>
+          <p>Training portal per Field Force e Retail</p>
+        </div>
+      </div>
+
+      <div class="search">
+        <input id="searchInput" type="text" placeholder="Cerca prodotti, training, FAQ..." />
+      </div>
+
+      <img src="assets/lfm-logo.webp" class="logo lfm-logo" alt="LFM" />
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-wrap">
+      <button class="tab active" data-tab="home">Home</button>
+      <button class="tab" data-tab="prodotti">Prodotti</button>
+      <button class="tab" data-tab="training">Training</button>
+      <button class="tab" data-tab="vendita">Vendita</button>
+      <button class="tab" data-tab="faq">FAQ</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="tab-panel active" id="home">
+      <div class="hero">
+        <div class="hero-content">
+          <h2>Il portale training LG HE, <span>semplice, premium e operativo.</span></h2>
+          <p>Una piattaforma pensata per aiutare promoter e trainer a conoscere la gamma, ripassare i contenuti chiave e usare argomenti vendita pronti per offrire al cliente la migliore esperienza possibile.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" data-go="prodotti">Apri prodotti</button>
+            <button class="secondary-btn" data-go="training">Vai al training</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-grid">
+        <div class="quick-card" data-go="prodotti">
+          <div class="quick-icon">📺</div>
+          <h3>Prodotti</h3>
+          <p>Lineup 2026, famiglie prodotto e modelli principali.</p>
+        </div>
+        <div class="quick-card" data-go="training">
+          <div class="quick-icon">🎓</div>
+          <h3>Training</h3>
+          <p>OLED, AI Hub, Gaming e Magic Remote.</p>
+        </div>
+        <div class="quick-card" data-go="vendita">
+          <div class="quick-icon">💡</div>
+          <h3>Vendita</h3>
+          <p>Argumentari, approccio cliente e gestione obiezioni.</p>
+        </div>
+        <div class="quick-card" data-go="faq">
+          <div class="quick-icon">❓</div>
+          <h3>FAQ</h3>
+          <p>Risposte rapide e supporto operativo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="prodotti">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Catalogo <span>Prodotti</span></h2>
+          <p class="section-subtitle">Lineup organizzata per gerarchia prodotto: OLED, MRGB, QNED e Nano 4K UHD.</p>
+        </div>
+      </div>
+      <div id="productsContainer"></div>
+    </section>
+
+    <section class="tab-panel" id="training">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Training <span>Experience</span></h2>
+          <p class="section-subtitle">Moduli immersivi derivati dal training LG ufficiale per promoter e trainer.</p>
+        </div>
+      </div>
+      <div id="trainingContainer" class="training-grid"></div>
+    </section>
+
+    <section class="tab-panel" id="vendita">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Argomenti di <span>Vendita</span></h2>
+          <p class="section-subtitle">Script e logiche pratiche per guidare il cliente verso la tecnologia più adatta.</p>
+        </div>
+      </div>
+      <div class="sales-grid">
+        <div class="sales-card"><h3>Cliente Cinema</h3><p>Spingi su Perfect Black, Dolby Vision, FILMMAKER Mode, Atmos e fedeltà cinematografica.</p></div>
+        <div class="sales-card"><h3>Cliente Gaming</h3><p>Valorizza refresh rate, VRR, HDMI 2.1, Motion Booster e Dolby Vision Gaming.</p></div>
+        <div class="sales-card"><h3>Cliente Family</h3><p>Focus su semplicità, AI Hub, contenuti streaming, Magic Remote e grande polliciaggio.</p></div>
+        <div class="sales-card"><h3>Cliente Design</h3><p>Gallery Design, installazione filo muro, profilo slim e ordine estetico premium.</p></div>
+        <div class="sales-card"><h3>Quando proporre OLED</h3><p>Cliente premium, cinema lover, gamer enthusiast e attenzione alla qualità immagine.</p></div>
+        <div class="sales-card"><h3>Quando proporre QNED</h3><p>Famiglie, sport, grandi polliciaggi e ricerca del miglior equilibrio qualità/prezzo.</p></div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="faq">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">FAQ & <span>Supporto</span></h2>
+          <p class="section-subtitle">Risposte rapide per promoter, trainer e field force.</p>
+        </div>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-card"><h3>Che differenza c’è tra QNED e Mini RGB?</h3><p>Mini RGB evolve il MiniLED con una retroilluminazione RGB e maggiore fedeltà cromatica.</p></div>
+        <div class="faq-card"><h3>Quando puntare su OLED?</h3><p>Quando il cliente cerca nero perfetto, massimo contrasto, cinema e gaming premium.</p></div>
+        <div class="faq-card"><h3>A cosa serve AI Hub?</h3><p>A personalizzare esperienza, ricerca, suggerimenti e interazione tramite comandi vocali.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="productModal" aria-hidden="true"></div>
+  <div class="modal" id="trainingModal" aria-hidden="true"></div>
+
+  <script src="products-data.js"></script>
+  <script src="training-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
